@@ -1,3 +1,6 @@
+Dir['./spec/support/**/*.rb'].map {|f| require f}
+ENV["PATH"] = "#{File.expand_path("../../bin", __FILE__)}:#{ENV['PATH']}"
+
 RSpec.configure do |config|
   # These two settings work together to allow you to limit a spec run
   # to individual examples or groups you care about by tagging them with
@@ -13,7 +16,7 @@ RSpec.configure do |config|
     # RSpec filters the backtrace by default so as not to be so noisy.
     # This causes the full backtrace to be printed when running a single
     # spec file (e.g. to troubleshoot a particular spec failure).
-    config.full_backtrace = true
+    #config.full_backtrace = true
 
     # Use the documentation formatter for detailed output,
     # unless a formatter has already been configured
