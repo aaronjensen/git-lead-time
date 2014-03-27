@@ -3,7 +3,7 @@ require 'chronic'
 
 module Support
   module Git
-    def git_commit(message = :default, date:)
+    def git_commit(message = :default, date: :now)
       @commit_counter ||= 0
       @commit_counter += 1
       args = []
@@ -16,11 +16,15 @@ module Support
         args += ["-m", message]
       end
 
-      git :commit, "--allow-empty", "--date", date, *args, date: date
+      unless date == :now
+        args += ["--date", date]
+      end
+
+      git :commit, "--allow-empty", *args, date: date
       #git "rev-parse", "HEAD"
     end
 
-    def git_merge(branch, date:)
+    def git_merge(branch, date: :now)
        git :merge, "--no-ff", "--no-commit", "topic", date: date
        git_commit :no_edit, date: date
     end
