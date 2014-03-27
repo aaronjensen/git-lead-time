@@ -3,7 +3,6 @@ require 'spec_helper'
 describe "git lead-time", :git do
   it "shows the lead time for each merge" do
     pending
-
     git_commit "Initial commit", on("monday 9am")
     git :checkout, "-b", "topic"
     git_commit "Topic commit", on("tuesday 9am")

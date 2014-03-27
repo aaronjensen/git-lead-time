@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'git/lead/time/version'
+require 'git_lead_time/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "git-lead-time"
-  spec.version       = Git::Lead::Time::VERSION
+  spec.version       = GitLeadTime::VERSION
   spec.authors       = ["Aaron Jensen"]
   spec.email         = ["aaronjensen@gmail.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}
