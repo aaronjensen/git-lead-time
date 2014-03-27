@@ -7,7 +7,7 @@ module GitLeadTime
     end
 
     def merges
-      `git rev-list --merges --first-parent HEAD`.lines.map(&:chomp)
+      `git rev-list --merges --first-parent HEAD | head -10`.lines.map(&:chomp)
     end
 
     def format_merge(merge)
