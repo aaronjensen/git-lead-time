@@ -16,7 +16,8 @@ module Support
         args += ["-m", message]
       end
 
-      git :commit, "--allow-empty", "--date", date, "-m", message, date: date
+      git :commit, "--allow-empty", "--date", date, *args, date: date
+      #git "rev-parse", "HEAD"
     end
 
     def git_merge(branch, date:)
@@ -25,12 +26,18 @@ module Support
     end
 
     def git(*args, date: :now)
-      env = {}
       if date != :now
-        env["GIT_COMMITTER_DATE"] = date
+        ENV["GIT_COMMITTER_DATE"] = date
       end
-      p date
-      raise unless system(env, "git", *args.map(&:to_s))
+
+      output = `#{["git", *args.map(&:to_s)].shelljoin} 2>&1`
+      raise unless $?.success?
+      output
+    rescue
+      puts output
+      raise
+    ensure
+      ENV["GIT_COMMITTER_DATE"] = nil
     end
 
     def on(date)
