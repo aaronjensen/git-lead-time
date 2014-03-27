@@ -29,6 +29,14 @@ module Support
        git_commit :no_edit, date: date
     end
 
+    def git_head(abbreviated)
+      if abbreviated
+        git("show", "-s", "--format=%h").chomp
+      else
+        git("rev-parse", "HEAD").chomp
+      end
+    end
+
     def git(*args, date: :now)
       if date != :now
         ENV["GIT_COMMITTER_DATE"] = date

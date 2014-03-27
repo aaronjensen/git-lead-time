@@ -1,7 +1,13 @@
 require 'time'
+require_relative 'first_commit_finder'
 
 module GitLeadTime
   class LeadTimeCommand
+    attr_reader :first_commit_finder
+    def initialize(ref="HEAD")
+      @first_commit_finder = FirstCommitFinder.new(ref)
+    end
+
     def run
       merges.map { |merge| format_merge(merge) }
     end
@@ -11,19 +17,20 @@ module GitLeadTime
     end
 
     def format_merge(merge)
-      Format.new(Merge.new(merge)).to_s
+      Format.new(Merge.new(merge, first_commit_finder)).to_s
     end
 
     class Merge
-      attr_reader :sha, :hunk, :message, :end_date
+      attr_reader *%i[merge_commit first_commit message end_date start_date]
 
-      def initialize(sha)
-        @sha = sha
-        @hunk, @message, @end_date = status("%h\n%s\n%cd")
+      def initialize(sha, first_commit_finder)
+        first_sha = first_commit_finder.first_commit("#{sha}^2")
+        @merge_commit, @message, @end_date = status("%h\n%s\n%cd", sha)
+        @first_commit, @start_date = status("%h\n%cd", first_sha)
       end
 
-      def status(format)
-        `git show -s --format='#{format}' #{sha}`.lines.map(&:strip)
+      def status(format, ref)
+        `git show -s --format='#{format}' #{ref}`.lines.map(&:strip)
       end
 
       def lead_time
@@ -31,8 +38,7 @@ module GitLeadTime
       end
 
       def start_date
-        # TODO: this is wrong
-        Time.parse `git show -s --format=%cd #{sha}^2`
+        Time.parse `git show -s --format=%cd #{first_commit}`
       end
     end
 
@@ -44,7 +50,7 @@ module GitLeadTime
       end
 
       def to_s
-        "#{format_lead_time(merge.lead_time)} #{merge.hunk} #{merge.message}"
+        "#{format_lead_time(merge.lead_time)} #{merge.first_commit}..#{merge.merge_commit} #{merge.message}"
       end
 
       def format_lead_time(lead_time)
