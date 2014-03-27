@@ -1,4 +1,4 @@
-# git lead-time [![Gem Version](https://badge.fury.io/rb/git-lead-time.png)](http://badge.fury.io/rb/git-lead-time) [![Build Status](https://travis-ci.org/aaronjensen/git-lead-time.svg?branch=master)](https://travis-ci.org/aaronjensen/git-lead-time) [![Code Climate](https://codeclimate.com/github/aaronjensen/git-lead-time.png)](https://codeclimate.com/github/aaronjensen/git-lead-time)
+# git lead-time [![Gem Version](https://badge.fury.io/rb/git-lead-time.png)](http://badge.fury.io/rb/git-lead-time) [![Code Climate](https://codeclimate.com/github/aaronjensen/git-lead-time.png)](https://codeclimate.com/github/aaronjensen/git-lead-time) [![Build Status](https://travis-ci.org/aaronjensen/git-lead-time.svg?branch=master)](https://travis-ci.org/aaronjensen/git-lead-time)
 
 Show the lead time of branches merged into the current branch. Currently an
 early proof of concept.
