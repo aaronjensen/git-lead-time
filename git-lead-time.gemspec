@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = GitLeadTime::VERSION
   spec.authors       = ["Aaron Jensen"]
   spec.email         = ["aaronjensen@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Shows you things about your git repo}
+  spec.description   = %q{Shows you things about your git repo}
   spec.homepage      = ""
   spec.license       = "MIT"
 
