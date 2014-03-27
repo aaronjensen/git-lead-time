@@ -15,26 +15,19 @@ module GitLeadTime
     end
 
     class Merge
-      attr_reader :sha
+      attr_reader :sha, :hunk, :message, :end_date
 
       def initialize(sha)
         @sha = sha
+        @hunk, @message, @end_date = status("%h\n%s\n%cd")
       end
 
-      def hunk
-        `git show -s --format='%h' #{sha}`.strip
-      end
-
-      def message
-        `git show -s --format='%s' #{sha}`.strip
+      def status(format)
+        `git show -s --format='#{format}' #{sha}`.lines.map(&:strip)
       end
 
       def lead_time
-        (end_date - start_date) / 60 / 60 / 24
-      end
-
-      def end_date
-        Time.parse `git show -s --format=%cd #{sha}`
+        (Time.parse(end_date) - start_date) / 60 / 60 / 24
       end
 
       def start_date
@@ -55,8 +48,8 @@ module GitLeadTime
       end
 
       def format_lead_time(lead_time)
-        time = "%.1g" % lead_time
-        "#{time} day#{"s" unless time == "1"}"
+        time = ("%5.1f" % lead_time)
+        "#{time} day#{"s" unless time == "1.0"}"
       end
     end
   end

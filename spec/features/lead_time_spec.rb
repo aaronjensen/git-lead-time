@@ -13,7 +13,7 @@ describe "git lead-time", :git do
     git "log", "--graph"
     output = git "lead-time"
     expect(output.lines.map(&:chomp)).to eq [
-      "1 day #{sha} #{message}"
+      "  1.0 days #{sha} #{message}"
     ]
   end
 end
