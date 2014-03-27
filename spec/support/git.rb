@@ -29,7 +29,7 @@ module Support
        git_commit :no_edit, date: date
     end
 
-    def git_head(abbreviated)
+    def git_head(abbreviated=false)
       if abbreviated
         git("show", "-s", "--format=%h").chomp
       else
