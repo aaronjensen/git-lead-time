@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = GitLeadTime::VERSION
   spec.authors       = ["Aaron Jensen"]
   spec.email         = ["aaronjensen@gmail.com"]
-  spec.summary       = %q{Shows you things about your git repo}
-  spec.description   = %q{Shows you things about your git repo}
+  spec.summary       = %q{Show the lead time of branches merged into the current branch.}
+  spec.description   = %q{Show the lead time of branches merged into the current branch.}
   spec.homepage      = ""
   spec.license       = "MIT"
 

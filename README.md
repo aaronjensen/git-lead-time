@@ -1,6 +1,7 @@
-# Git::Lead::Time
+# git lead-time
 
-TODO: Write a gem description
+Show the lead time of branches merged into the current branch. Currently an
+early proof of concept.
 
 ## Installation
 
@@ -18,7 +19,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```bash
+$ git lead-time
+```
 
 ## Contributing
 
