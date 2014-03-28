@@ -4,4 +4,8 @@ module GitLeadTime
   def self.run
     puts LeadTimeCommand.new.run
   end
+
+  def self.each_merge
+
+  end
 end

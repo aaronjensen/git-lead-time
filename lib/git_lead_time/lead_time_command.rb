@@ -5,21 +5,21 @@ require_relative 'lead_time_format'
 
 module GitLeadTime
   class LeadTimeCommand
-    attr_reader :first_commit_finder
-    def initialize(ref="HEAD")
-      @first_commit_finder = FirstCommitFinder.new(ref)
+    attr_reader :repo, :formatter, :output
+    def initialize(output: $stdout, formatter: LeadTimeFormat.new, repo:)
+      @output = output
+      @repo = repo
+      @formatter = formatter
     end
 
     def run
-      merges.map { |merge| format_merge(merge) }
+      repo.each_merge("HEAD") do |merge|
+        output.puts formatter.format(merge)
+      end
     end
 
     def merges
       `git rev-list --merges --first-parent HEAD | head -10`.lines.map(&:chomp)
-    end
-
-    def format_merge(merge)
-      LeadTimeFormat.new(Merge.new(merge, first_commit_finder)).to_s
     end
   end
 end
