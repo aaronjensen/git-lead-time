@@ -31,5 +31,14 @@ module GitLeadTime
 
       expect(lead_time).to eq 1.0 / 8.0
     end
+
+    it "should deal with time zones" do
+      start_date = Time.parse "2014-03-20 17:36:27 -0400"
+      end_date = Time.parse "2014-03-20 16:18:37 -0700"
+
+      lead_time = calculator.lead_time(start_date: start_date, end_date: end_date)
+
+      expect(lead_time).to be > 0.2
+    end
   end
 end

@@ -4,7 +4,7 @@ module GitLeadTime
       format = {
         subject: "%s",
         abbreviated_hash: "%h",
-        date: "%cd",
+        date: "%ci",
       }.values_at(*fields).join("\n")
 
       `git show -s --format='#{format}' #{ref}`.lines.map(&:strip)

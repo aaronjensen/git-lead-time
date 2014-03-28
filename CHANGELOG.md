@@ -2,6 +2,7 @@
 
 * Print all lines, one at a time, deal with being piped to `head`.
 * Relax `business_time` version requirement.
+* Deal with multiple timezones, everything is converted to local.
 
 ## 0.0.2
 

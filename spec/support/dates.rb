@@ -5,7 +5,7 @@ module Support
     end
 
     def git_date(str)
-      date(str).strftime("%a %b %-e %k:%M:%S %Y %z")
+      date(str).strftime("%Y-%m-%d %k:%M:%S %z")
     end
   end
 end
