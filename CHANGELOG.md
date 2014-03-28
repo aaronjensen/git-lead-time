@@ -1,3 +1,7 @@
+## Unreleased
+
+* Print all lines, one at a time, deal with being piped to `head`.
+
 ## 0.0.2
 
 * Take nights and weekends into account when calculating lead time.

@@ -8,7 +8,7 @@ module GitLeadTime
     end
 
     def each
-      `git rev-list --merges --first-parent HEAD | head -10`.each_line do |rev|
+      `git rev-list --merges --first-parent HEAD`.each_line do |rev|
         yield rev.strip
       end
     end
