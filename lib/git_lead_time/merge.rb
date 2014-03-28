@@ -2,9 +2,8 @@ module GitLeadTime
   class Merge
     attr_reader *%i[merge_commit first_commit message end_date start_date]
 
-    def initialize(sha, first_commit_finder)
-      first_sha = first_commit_finder.first_commit("#{sha}^2")
-      @merge_commit, @message, @end_date = status("%h\n%s\n%cd", sha)
+    def initialize(first_sha:, merge_sha:)
+      @merge_commit, @message, @end_date = status("%h\n%s\n%cd", merge_sha)
       @first_commit, @start_date = status("%h\n%cd", first_sha)
     end
 
