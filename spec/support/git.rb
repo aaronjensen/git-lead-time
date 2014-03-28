@@ -53,7 +53,7 @@ module Support
     end
 
     def on(str)
-      { date: date(str).strftime("%a, %b %d %k:%M %Y %z") }
+      { date: git_date(str) }
     end
   end
 end

@@ -3,6 +3,10 @@ module Support
     def date(str)
       Chronic.parse(str, now: Time.local(2014, 2, 1))
     end
+
+    def git_date(str)
+      date(str).strftime("%a, %b %d %k:%M %Y %z")
+    end
   end
 end
 
