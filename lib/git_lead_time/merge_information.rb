@@ -1,4 +1,5 @@
 require_relative 'first_commit_finder'
+require_relative 'merge'
 
 module GitLeadTime
   class MergeInformation
