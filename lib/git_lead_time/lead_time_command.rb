@@ -1,15 +1,15 @@
 require 'time'
-require_relative 'first_commit_finder'
 require_relative 'merge'
 require_relative 'lead_time_format'
 require_relative 'merge_enumerator'
+require_relative 'merge_information'
 
 module GitLeadTime
   class LeadTimeCommand
-    attr_reader :first_commit_finder, :ref
+    attr_reader :merge_information, :ref
     def initialize(ref="HEAD")
       @ref = ref
-      @first_commit_finder = FirstCommitFinder.new(ref)
+      @merge_information = MergeInformation.new(ref)
     end
 
     def run
@@ -17,7 +17,7 @@ module GitLeadTime
     end
 
     def format_merge(merge)
-      LeadTimeFormat.new(Merge.new(merge, first_commit_finder)).to_s
+      LeadTimeFormat.new(merge_information.info_for(merge)).to_s
     end
   end
 end
