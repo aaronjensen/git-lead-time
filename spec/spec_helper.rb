@@ -1,3 +1,6 @@
+require 'business_time'
+I18n.config.enforce_available_locales = true
+
 Dir['./spec/support/**/*.rb'].map {|f| require f}
 ENV["PATH"] = "#{File.expand_path("../../bin", __FILE__)}:#{ENV['PATH']}"
 

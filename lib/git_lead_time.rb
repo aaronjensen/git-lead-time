@@ -1,3 +1,5 @@
+require 'business_time'
+
 require_relative 'git_lead_time/lead_time_command'
 require_relative 'git_lead_time/calculator'
 
