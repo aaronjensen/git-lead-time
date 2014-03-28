@@ -25,7 +25,7 @@ module Support
     end
 
     def git_merge(branch, date: :now)
-       git :merge, "--no-ff", "--no-commit", "topic", date: date
+       git :merge, "--no-ff", "--no-commit", branch, date: date
        git_commit :no_edit, date: date
     end
 

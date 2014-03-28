@@ -9,7 +9,7 @@ module GitLeadTime
 
     def first_commit(ref)
       first_commit = ref
-      first_parents(ref).each do |parent|
+      first_parents(ref) do |parent|
         break if target_refs.include? parent
         first_commit = parent
       end
