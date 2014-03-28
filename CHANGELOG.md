@@ -1,4 +1,4 @@
-## Unreleased
+## 0.0.3
 
 * Print all lines, one at a time, deal with being piped to `head`.
 * Relax `business_time` version requirement.
