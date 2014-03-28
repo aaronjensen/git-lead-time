@@ -2,20 +2,18 @@ require 'time'
 require_relative 'first_commit_finder'
 require_relative 'merge'
 require_relative 'lead_time_format'
+require_relative 'merge_enumerator'
 
 module GitLeadTime
   class LeadTimeCommand
-    attr_reader :first_commit_finder
+    attr_reader :first_commit_finder, :ref
     def initialize(ref="HEAD")
+      @ref = ref
       @first_commit_finder = FirstCommitFinder.new(ref)
     end
 
     def run
-      merges.map { |merge| format_merge(merge) }
-    end
-
-    def merges
-      `git rev-list --merges --first-parent HEAD | head -10`.lines.map(&:chomp)
+      MergeEnumerator.new(ref).map.map { |merge| format_merge(merge) }
     end
 
     def format_merge(merge)
