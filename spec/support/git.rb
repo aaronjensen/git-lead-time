@@ -52,8 +52,8 @@ module Support
       ENV["GIT_COMMITTER_DATE"] = nil
     end
 
-    def on(date)
-      { date: Chronic.parse(date, now: Time.local(2014, 2, 1)).strftime("%a, %b %d %k:%M %Y %z") }
+    def on(str)
+      { date: date(str).strftime("%a, %b %d %k:%M %Y %z") }
     end
   end
 end
