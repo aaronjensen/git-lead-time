@@ -1,6 +1,7 @@
 ## Unreleased
 
 * Print all lines, one at a time, deal with being piped to `head`.
+* Relax `business_time` version requirement.
 
 ## 0.0.2
 
